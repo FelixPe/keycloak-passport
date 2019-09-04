@@ -41,7 +41,7 @@ Strategy.prototype.userProfile = function (accessToken, done) {
         firstName: json.given_name,
         lastName: json.family_name,
         username: json.preferred_username,
-        permissions: json.passport.roles,
+        permissions: (json.passport === undefined) ? [] : json.passport.roles,
         email: json.email,
         avatar: json.avatar,
         realm: this.options.realm,
