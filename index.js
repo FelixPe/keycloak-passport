@@ -41,7 +41,8 @@ Strategy.prototype.userProfile = function (accessToken, done) {
         firstName: json.given_name,
         lastName: json.family_name,
         username: json.preferred_username,
-        email,
+        permissions: json.passport.roles,
+        email: json.email,
         avatar: json.avatar,
         realm: this.options.realm,
       };
