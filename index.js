@@ -41,11 +41,16 @@ Strategy.prototype.userProfile = function (accessToken, done) {
         firstName: json.given_name,
         lastName: json.family_name,
         username: json.preferred_username,
-        permissions: (typeof json.passport === "undefined") ? [] : json.passport.roles,
+        permissions: [],
         email: json.email,
         avatar: json.avatar,
         realm: this.options.realm,
       };
+
+      if(typeof json.passport !== "undefined"){
+        userInfo.permissions = json.passport.roles;
+      }
+
 
       done(null, userInfo);
     } catch (e) {
